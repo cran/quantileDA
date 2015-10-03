@@ -1,0 +1,6 @@
+exportPattern("^[[:alpha:]]+")
+S3method(plot,quantiled)
+S3method(plot,quantileDA)
+S3method(print,quantileDA)
+ importFrom("graphics", "abline", "legend", "plot")
+ importFrom("stats", "lm", "predict", "quantile", "runif")
