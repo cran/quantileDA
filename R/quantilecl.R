@@ -1,7 +1,8 @@
 quantilecl<-function(train,test,cl,theta=NULL,cl.test=NULL,skew.correct="Galton")
 {
-  
-  if (skew.correct=="Galton") {  p<-ncol(train)
+  p<-ncol(train)
+  if (p==1) skew.correct="none" 
+  if (skew.correct=="Galton") {  
                                  n.train<-nrow(train)
                                  n.test<-nrow(test)
                                  levels<-unique(cl)
@@ -16,7 +17,7 @@ quantilecl<-function(train,test,cl,theta=NULL,cl.test=NULL,skew.correct="Galton"
                                  test<-test*t(matrix(sign(total.skew),p,n.test))
   }
   
-  if (skew.correct=="Kelley") {  p<-ncol(train)
+  if (skew.correct=="Kelley") { 
                                  n.train<-nrow(train)
                                  n.test<-nrow(test)
                                  levels<-unique(cl)
@@ -32,7 +33,7 @@ quantilecl<-function(train,test,cl,theta=NULL,cl.test=NULL,skew.correct="Galton"
   }
   
   
-  if (skew.correct=="Skewness") {  p<-ncol(train)
+  if (skew.correct=="Skewness") {  
                                    n.train<-nrow(train)
                                    n.test<-nrow(test)
                                    levels<-unique(cl)

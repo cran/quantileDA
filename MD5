@@ -1,4 +1,4 @@
-da14ad8b443d3ae7af8000ebc0a81393 *DESCRIPTION
+d7dc6b445f39273cc93beead6a9ef871 *DESCRIPTION
 1d64fec92e02acad6296ff8f1369b67a *NAMESPACE
 1e31a624b80ebbba0873f4cde344b328 *R/balanced.folds.R
 71853e19b168a6727c182196efd3032f *R/centroidcl.R
@@ -11,7 +11,7 @@ c3664ce9f494e905bf83ac026f3f2f7c *R/permute.rows.R
 9abf307bc921f6e17f2d8a731c6b4f54 *R/plot.quantiled.R
 ef9d3d6d38bc712ba0ec687450bbc579 *R/print.quantileDA.R
 929ecba6158850e2e7c0d21cc37d0e88 *R/quantileCV.R
-6bdb9fc23c76b3206236711291a7426b *R/quantilecl.R
+1a3aba65445fac393646fb06da326dcc *R/quantilecl.R
 4806159128650117f2b6b78aef4cbfab *R/quantilecldiff.R
 c8bbcda43a9a14e3daf32c43217d279e *R/skewness.R
 0f0a4131e8bc87f0996056e73ffc8fc9 *R/theta.cl.R
@@ -27,7 +27,7 @@ b3c4250f3a2f84a853d8725920ccb069 *man/permute.rows.Rd
 6da91a2e0929e09f0a330e0e6aeaf343 *man/plot.quantileDA.Rd
 b18e8453d7cf718a5cacb3f963acf397 *man/plot.quantiled.Rd
 d5cc9141c5ee6bc9a7e1f0177e9836e4 *man/print.quantileDA.Rd
-95dfd49df8fee3217ae135e3ca1af7c9 *man/quantileCV.Rd
+f6298dbe2396d6136301979f2b109dfd *man/quantileCV.Rd
 96cd2c308953b9b72966bcfb79dad850 *man/quantilecl.Rd
 5a2ff4b4d42248ed97d936047be7f660 *man/quantilecldiff.Rd
 d5a44b41d6e0fb34409460dc7725514a *man/skewness.Rd
