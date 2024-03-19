@@ -1,4 +1,5 @@
-quantileCV<-function(x,cl,nfold=min(table(cl)),folds=balanced.folds(cl,nfold),theta=NULL,seed=1,varying=FALSE)
+quantileCV<-function(x,cl,nfold=min(table(cl)),folds=balanced.folds(cl,nfold),
+                     theta=NULL,seed=1,varying=FALSE)
 {
 	
 	set.seed(seed)
@@ -8,7 +9,7 @@ quantileCV<-function(x,cl,nfold=min(table(cl)),folds=balanced.folds(cl,nfold),th
 	c.median<-rep(0,nfold)
 	c.centroid<-rep(0,nfold)
 	c.quantile<-rep(0,nfold)
-	c.quantile2<-rep(0,nfold) ##train
+	c.quantile2<-rep(0,nfold) 
 	
 	if (is.null(theta)) {theta<-seq(0,1,0.02)
 		theta<-theta[-length(theta)]
@@ -16,7 +17,8 @@ quantileCV<-function(x,cl,nfold=min(table(cl)),folds=balanced.folds(cl,nfold),th
 
 	c.quantile.train<-matrix(0,length(theta),nfold)
 	c.quantile.test<-matrix(0,length(theta),nfold)
-	c.quantile.theta<-rep(0,nfold)
+	if (!varying) c.quantile.theta<-rep(0,nfold) else c.quantile.theta<-matrix(0,p,nfold)
+	
 	
 	for (h in 1:nfold) {
 		
@@ -39,21 +41,26 @@ quantileCV<-function(x,cl,nfold=min(table(cl)),folds=balanced.folds(cl,nfold),th
         
 # quantile classifiers
         
-        if (varying) out.q<-quantilecldiff(train,test,cl.train,theta,cl.test) else out.q<-quantilecl(train,test,cl.train,theta,cl.test)
+        if (varying) {out.q<-quantilecl.vw(train,test,cl.train,theta=NULL,cl.test)  
+                      c.quantile.theta[,h]<-out.q$thetas}
+        
+        if (!varying) {out.q<-quantilecl(train,test,cl.train,theta,cl.test)
+                      c.quantile.test[,h]<-out.q$test.rates
+                      c.quantile.train[,h]<-out.q$train.rates
+                      c.quantile.theta[h]<-out.q$theta.choice}
+		
         c.quantile[h]<-out.q$me.test
         c.quantile2[h]<-out.q$me.train
-        if (!varying) c.quantile.test[,h]<-out.q$test.rates
-        if (!varying) c.quantile.train[,h]<-out.q$train.rates
-        c.quantile.theta[h]<-out.q$theta.choice
-		
+        
 	}
+	
 	
 	if (!varying) test.rates<-rowMeans(c.quantile.test) else test.rates<-NULL
 	if (!varying) train.rates<-rowMeans(c.quantile.train) else train.rates<-NULL
 	
 	
 	out<-list(folds=folds,test.rates=test.rates,train.rates=train.rates,thetas=theta,theta.choice=c.quantile.theta,me.test=c.quantile,me.train=c.quantile2,me.median=c.median,me.centroid=c.centroid)
-#if (!varying) class(out)<-"quantileDA" else class(out)<-"quantiled"
+  #if (!varying) class(out)<-"quantileDA" else class(out)<-"quantiled"
 	return(out)
 	
 }

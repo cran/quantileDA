@@ -74,6 +74,7 @@ quantilecl<-function(train,test,cl,theta=NULL,cl.test=NULL,skew.correct="Galton"
 	me.test<-test.rates[which.min(train.rates)]
 	me.train<-train.rates[which.min(train.rates)]
 	out.q<-theta.cl(train,test,cl,theta.choice,cl.test)	
+	if (is.null(cl.test)) me.test=NULL
 	out<-list(train.rates=train.rates,test.rates=test.rates,thetas=theta,
             theta.choice=theta.choice,me.train=me.train,me.test=me.test,
             train=train,test=test,cl.train=out.q$cl.train,cl.test=out.q$cl.test,

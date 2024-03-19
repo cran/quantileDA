@@ -44,7 +44,7 @@ A list with components
 \author{Christian Hennig, Cinzia Viroli}
 
 \seealso{
-See Also \code{\link{quantilecldiff}}
+See Also \code{\link{quantilecl.vw}}
 }
 \examples{
 data(ais)
